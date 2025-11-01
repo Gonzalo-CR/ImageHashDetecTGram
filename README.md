@@ -121,19 +121,24 @@ Cuando seleccionas la opción 8 (Funciones de Telegram), accedes a un submenú e
 
 #### 🔌 Estado: No Conectado
 
-- [1] 🔧 Configurar cliente de Telegram
-- [0] ↩️ Volver al menú principal
+| Opción | 	Descripción |	Función | 
+|--------|-------------|---------|
+| [1]	| 🔧 Configurar cliente de Telegram	| Configura la conexión con Telegram usando API ID, API Hash y número de teléfono | 
+| [0]	| ↩️ Volver al menú principal	| Regresa al menú principal del sistema |
 
 #### ✅ Estado: Conectado
 
-- [1] 🔍 Ver información de conexión
-- [2] 📋 Listar grupos/chats disponibles
-- [3] 🔍 Escanear grupo específico
-- [4] 📋 Escanear múltiples grupos
-- [5] 👁️ Monitorear grupo en tiempo real
-- [6] 📊 Ver detecciones de Telegram
-- [7] 🚪 Desconectar Telegram
-- [0] ↩️ Volver al menú principal
+| Opción	| Descripción	| Función |
+|--------|-------------|---------|
+| [1] |	🔍 Ver información de conexión	| Muestra detalles del usuario conectado (nombre, username, ID, teléfono) |
+| [2] |	📋 Listar grupos/chats disponibles	| Lista todos los grupos y canales a los que tienes acceso |
+| [3]	| 🔍 Escanear grupo específico	| Escanea el historial de un grupo/canal en busca de imágenes objetivo |
+| [4]	| 📋 Escanear múltiples grupos	| Escanea varios grupos/canales simultáneamente |
+| [5]	| 👁️ Monitorear grupo en tiempo real	| Monitorea un grupo en tiempo real y detecta nuevas imágenes al instante |
+| [6]	| 📊 Ver detecciones de Telegram	| Muestra todas las coincidencias encontradas en escaneos de Telegram |
+| [7]	| 🚪 Desconectar Telegram	| Cierra la sesión activa de Telegram |
+| [0] |	↩️ Volver al menú principal	| Regresa al menú principal del sistema |
+
 
 ### 💻 Modo CLI (Línea de Comandos)
 
@@ -163,7 +168,7 @@ Ideal para scripts y automatización:
 
 ### 📡 Caso 1: Monitoreo Persistente de Sitios Web (Cron/Bucle)
 
-Para establecer un monitoreo continuo que se ejecute cada hora:
+Para establecer un monitoreo continuo que se ejecute cada hora  `monitor.sh:`
 ```bash
 #!/bin/bash
 
@@ -201,12 +206,6 @@ Monitorea grupos específicos de Telegram para detectar imágenes objetivo al in
 (cyber_env) $ python image_hash_detector-TG.py --telegram-monitor "GrupoImportante" --threshold 5
 ```
 
-Características del monitoreo:
-
-- ✅ Detección en tiempo real de nuevas imágenes
-- ✅ Exportación automática al finalizar (Ctrl+C)
-- ✅ Umbral de similitud configurable
-- ✅ Manejo robusto de errores de conexión
 
 ### 🔍 Caso 3: Escaneo Masivo de Historiales de Telegram
 
@@ -227,9 +226,9 @@ done < grupos_telegram.txt
 Gestión rápida desde la CLI:
 ```bash
 # 1. Añadir nueva imagen objetivo
-(cyber_env) $ python image_hash_detector-TG.py --add-image /path/a/imagen_protesta.png \
-  --description "Foto de manifestación clave" \
-  --tags "protesta, politica"
+(cyber_env) $ python image_hash_detector-TG.py --add-image /path/a/imagen_investigacion.png \
+  --description "Foto de investigfación clave" \
+  --tags "investigación, secreto"
 
 # 2. Listar para encontrar el ID del objetivo
 (cyber_env) $ python image_hash_detector-TG.py --list
@@ -275,6 +274,16 @@ ImageHashDetector/
 └── README.md                      # Documentación
 ```
 
+### 🛡️ SEGURIDAD:
+---
+```
+- Las credenciales se almacenan localmente
+- La sesión es privada y segura
+- Solo tienes acceso a grupos donde ya eres miembro
+```
+---
+
+
 ## 🏗️ Arquitectura del Sistema
 
 ### 🔐 Algoritmo de Detección Multi-Hash
@@ -317,11 +326,11 @@ def compute_hashes(image):
 
 ### 🛡️ Resistencia a Evasión
 
-- **Redimensionamiento:** ✓ Detectado
-- **Compresión JPEG:** ✓ Detectado
-- **Cambios de color:** ✓ Detectado (parcial)
-- **Rotación ligera:** ✓ Detectado (con threshold)
-- **Recortes menores:** ✓ Detectado (según tipo)
+- **Redimensionamiento:** ✓ Logrado
+- **Compresión JPEG:** ✓ Logrado
+- **Cambios de color:** ✓ Logrado (parcial)
+- **Rotación ligera:** ✓ Logrado (con threshold)
+- **Recortes menores:** ✓ Logrado (según tipo)
 
 ### 📱 Funcionalidades Avanzadas de Telegram
 
@@ -371,7 +380,8 @@ python image_hash_detector-TG.py --setup-telegram \
 # O desde el menú interactivo (Opción 8 → 1)
 ```
 
-## 🚧 Próximas Mejoras
+
+## 🚧 Posibles Próximas Mejoras
 
 - Soporte para video frames (análisis por fotogramas)
 - Machine Learning para detección avanzada
@@ -428,6 +438,15 @@ python image_hash_detector-TG.py --setup-telegram \
 
 **Telegram:** Asegurate de cumplir con los Términos de Servicio de Telegram y obtener los permisos necesarios antes de monitorear grupos o canales.
 
+
+## ⚠️ IMPORTANTE: CONFIGURACIÓN DE TELEGRAM
+
+### 🔐 RECUERDA: USO DE CUENTA DE USUARIO REAL
+
+#### ESTE SCRIPT UTILIZA UNA CUENTA DE USUARIO REAL DE TELEGRAM VINCULADA A UN NÚMERO DE TELÉFONO, no funcina con Bots de Telegram.
+
+
+
 ## 🇦🇷 Hecho con Orgullo
 
 Desarrollado desde Argentina 🇦🇷 por **Gonzalo-CR**, con enfoque en ciberseguridad, inteligencia open-source y herramientas para profesionales de seguridad.
@@ -440,4 +459,4 @@ Este proyecto está bajo la licencia MIT. Ver LICENSE para más detalles.
 
 ⭐ **¿Te gusta ImageHashDetector? ¡Dale una estrella al repositorio!**
 
-📱 **¿Problemas con Telegram?** Revisa la documentación de [Telethon](https://docs.telethon.dev/) y asegúrate de tener las credenciales correctas de la API.
+📱 **¿Problemas con Telegram?** Revisa la documentación de [Telethon](https://docs.telethon.dev/) y asegurate de tener las credenciales correctas de la API.
